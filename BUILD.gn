@@ -1,0 +1,52 @@
+import("//build/components.gni")
+# import("//build/test.gni")
+
+# group("tests") {
+#   testonly = true
+#   deps = [ ":hello-world-cpp-unittests" ]
+# }
+
+executable("bin") {
+  output_name = "cloc"
+  sources = [ 
+    "cc_main.cpp",
+    "CmpMngr.cpp",
+    "CUtil.cpp",
+    "DiffTool.cpp",
+    "main.cpp",
+    "MainObject.cpp",
+    "UCCGlobals.cpp",
+    "UCCThread.cpp",
+   ]
+   deps = [
+    #   "libutf",
+    #   "libutil",
+    #   "//sdk/lib/fdio",
+    #   "//src/zircon/lib/zircon",
+    ]
+}
+
+# [START fuchsia_component]
+# fuchsia_component("cloc_component") {
+#   manifest = "meta/hello_world_cpp.cml"
+#   deps = [ ":bin" ]
+# }
+
+fuchsia_shell_package("cloc") {
+    deps = [ ":bin" ]
+}
+
+# [END fuchsia_component]
+
+# executable("unittests") {
+#   testonly = true
+#   output_name = "hello_world_cpp_test_bin"
+#   sources = [ "hello_world_unittest.cc" ]
+#   deps = [ "//src/lib/fxl/test:gtest_main" ]
+# }
+
+# [START fuchsia_test]
+# fuchsia_unittest_package("hello-world-cpp-unittests") {
+#   deps = [ ":unittests" ]
+# }
+# [END fuchsia_test]
